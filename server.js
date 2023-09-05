@@ -6,6 +6,8 @@ var logger = require('morgan');
 
 // add mongoose process
 require('dotenv').config();
+
+require('./config/database');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
