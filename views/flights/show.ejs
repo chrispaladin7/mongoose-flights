@@ -7,27 +7,55 @@
                 <th>Airport</th>
                 <th>Flight Number</th>
                 <th>Departs</th>
+                <th>Destination Airport</th>
                 <th>Arrivals</th>
             </tr>
         </thead>
         <tbody>
-                <tr>
-                    <td>
-                        <%= flight.airline %>
-                    </td>
-                    <td>
-                        <%= flight.airport %>
-                    </td>
-                    <td>
-                        <%= flight.flightNo %>
-                    </td>
-                    <td>
-                        <%= flight.departs %>
-                    </td>
-                    <td>
-                        <%= flight.arrival %>
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    <%= flight.airline %>
+                </td>
+                <td>
+                    <%= flight.airport %>
+                </td>
+                <td>
+                    <%= flight.flightNo %>
+                </td>
+                <td>
+                    <%= flight.departs.toLocaleDateString() %>
+                </td>
+               
+
+                <% flight.destinations.forEach(function(f) { %>
+                        <td>
+                          <%= f.airport %>
+                        </td>
+                        <td>
+                          <%= f.arrival.toLocaleDateString()%>
+                        </td>
+                      <% }); %>
+            </tr>
         </tbody>
+
+        <div>
+            <form action="/flights/<%= flight._id %>/destinations" method="POST">
+              
+                <label>Destination Airport:
+                    <select name="airport">
+                        <option value="JFK">JFK</option>
+                        <option value="ATL">ATL</option>
+                        <option value="DCA">DCA</option>
+                        <option value="TYR">TYR</option>
+                    </select>
+                </label><br>
+                <label>Arrival Time:
+                    <input type="date" name="arrival">
+                </label><br>
+                <button type="submit">ADD</button>
+                <br><br><br>
+            </form>
+        </div>
+
     </table>
     <%- include('../partials/footer') %>
