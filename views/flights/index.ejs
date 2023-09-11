@@ -24,9 +24,19 @@
             <%= m.flightNo %>
           </td>
           <td>
-            <%= m.departs %>
+            <%= m.departs.toLocaleDateString() %>
           </td>
-          <td><a href="/flights/<%= m._id %>">DETAILS</a></td>
+          <td>
+            <form action="/flights/<%= m._id %>">
+              <button type="submit">Details</button>
+           </form>
+            <form action="/flights/<%= m._id %>/tickets/new">
+
+              <button type="submit">New Ticket</button>
+           </form>
+            
+          </td>
+         
         </tr>
         <% }); %>
     </tbody>
